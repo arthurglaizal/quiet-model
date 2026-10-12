@@ -106,8 +106,7 @@ quiet-model/
 ├── LICENSE
 ├── .claude-plugin/
 │   ├── plugin.json
-│   ├── marketplace.json
-│   └── icon.png
+│   └── marketplace.json
 ├── hooks/
 │   ├── hooks.json
 │   └── register.tsx
