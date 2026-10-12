@@ -66,6 +66,11 @@ Once installed, the row appears above the prompt in every new session.
 
 - **No network requests.** Nothing is sent anywhere by the mod.
 - **No commands.** It never runs a slash command or changes your Claude Code settings. It only replaces the model and the effort of the requests you send from the main conversation.
+- **What it hooks:**
+  - `command.run`, only for `/quiet-model`: shows or hides the row. It never sees any other command.
+  - `turn.step`: for each request from the main conversation, puts in the model and effort you picked. It also reads the request's model and effort, to notice when you changed the app's menu. Subagents are left alone.
+  - `ui.render`: draws the row above the prompt, and the small line under each reply.
+  - `session.start`: registers `/quiet-model` and loads your saved default.
 - **In the session's memory only**: your current choice, and the last 160 characters of recent replies, used to tell which reply to sign. Nothing about a reply is written to disk.
 - **Two values kept on your machine**, in Claude Code's plugin storage: whether you closed the row, and your default model and effort.
 
@@ -103,7 +108,6 @@ quiet-model/
 │   ├── plugin.json
 │   ├── marketplace.json
 │   └── icon.png
-├── docs/quiet-mods.png
 ├── hooks/
 │   ├── hooks.json
 │   └── register.tsx
@@ -116,7 +120,7 @@ Run the checks with `claude plugin validate .` and `claude plugin test .`.
 ## Quiet mods
 
 <p align="center">
-  <img src="docs/quiet-mods.png" alt="Quiet Token Bar and Quiet Model stacked above the Claude Code prompt" width="100%">
+  <img src="https://github.com/arthurglaizal/quiet-model/releases/download/v1.0.0/quiet-mods.png" alt="Quiet Token Bar and Quiet Model stacked above the Claude Code prompt" width="100%">
 </p>
 
 The Quiet mods share one design: grey by default, color only when something needs you. They stack neatly above the prompt.
