@@ -1,0 +1,23 @@
+{
+  "name": "quiet-model",
+  "version": "1.0.0",
+  "description": "The model and effort picker as one quiet grey row above the prompt: switch between Haiku, Sonnet, Opus and Fable and set the effort without leaving the conversation. /quiet-model shows or hides it.",
+  "author": {
+    "name": "Arthur Glaizal",
+    "url": "https://github.com/arthurglaizal"
+  },
+  "types": "./types/index.d.ts",
+  "homepage": "https://github.com/arthurglaizal/quiet-model",
+  "repository": "https://github.com/arthurglaizal/quiet-model",
+  "license": "MIT",
+  "keywords": [
+    "model",
+    "effort",
+    "picker",
+    "switcher",
+    "opus",
+    "sonnet",
+    "haiku",
+    "mod"
+  ]
+}
