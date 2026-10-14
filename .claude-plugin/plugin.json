@@ -1,7 +1,7 @@
 {
   "name": "quiet-model",
-  "version": "1.0.0",
-  "description": "The model and effort picker as one quiet grey row above the prompt: switch between Haiku, Sonnet, Opus and Fable and set the effort without leaving the conversation. /quiet-model shows or hides it.",
+  "version": "2.0.0",
+  "description": "The model and effort picker as one quiet grey row above the prompt: switch between Haiku, Sonnet, Opus and Fable and set the effort without leaving the conversation, or let an optional Magic Router pick them for each message. /quiet-model shows or hides it.",
   "author": {
     "name": "Arthur Glaizal",
     "url": "https://github.com/arthurglaizal"
@@ -18,6 +18,9 @@
     "opus",
     "sonnet",
     "haiku",
-    "mod"
+    "mod",
+    "router",
+    "routing",
+    "cost"
   ]
 }
