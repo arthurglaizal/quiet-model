@@ -417,16 +417,16 @@ const ROW_PX = 16 // a cell's height, a little under the real one so a picture i
 const TOP = 2
 const GAP_Y = 10
 const CHILD_GAP = 14 // between the efforts of one model, so the branching shows
-const spread = (hs: number[]) => hs.reduce((n, h) => n + h, 0) + CHILD_GAP * Math.max(0, hs.length - 1)
-type Block = { node: RouteNode; h: number; children: { name: string; count: number; h: number }[]; block: number }
+const spread = (sizes: number[]) => sizes.reduce((n, size) => n + size, 0) + CHILD_GAP * Math.max(0, sizes.length - 1)
+type Block = { node: RouteNode; size: number; children: { name: string; count: number; size: number }[]; block: number }
 function sankeyBlocks(t: Tally): { blocks: Block[]; height: number } {
   const tree = routeTree(t)
   const usable = 220
   const scale = t.total > 0 ? usable / t.total : 0
   const blocks = tree.map(node => {
-    const h = Math.max(NODE_MIN, node.count * scale)
-    const children = node.children.map(c => ({ ...c, h: Math.max(CHILD_MIN, c.count * scale) }))
-    return { node, h, children, block: Math.max(h, spread(children.map(c => c.h))) }
+    const size = Math.max(NODE_MIN, node.count * scale)
+    const children = node.children.map(c => ({ ...c, size: Math.max(CHILD_MIN, c.count * scale) }))
+    return { node, size, children, block: Math.max(size, spread(children.map(c => c.size))) }
   })
   const height = TOP * 2 + blocks.reduce((n, b) => n + b.block, 0) + GAP_Y * Math.max(0, blocks.length - 1)
   return { blocks, height: Math.max(180, Math.ceil(height)) }
@@ -439,7 +439,7 @@ export function sankeySvg(t: Tally, width: number) {
   const widest = Math.max(0, ...blocks.flatMap(b => b.children.map(c => textWidth(`${c.name} ${c.count}`, 14))))
   const x2 = Math.max(Math.round(width * 0.7), Math.round(width - 6 - 8 - widest * 1.25 - 12))
   const node = 6
-  const rootH = blocks.reduce((n, b) => n + b.h, 0)
+  const rootH = blocks.reduce((n, b) => n + b.size, 0)
   const rootY = TOP + Math.max(0, (H - TOP * 2 - rootH) / 2)
   const defs: string[] = []
   const band = (id: string, from: string, to: string, xa: number, ya: number, xb: number, yb: number, ha: number, hb: number) => {
@@ -454,18 +454,18 @@ export function sankeySvg(t: Tally, width: number) {
   let y = TOP
   blocks.forEach((b, i) => {
     const color = MODEL_COLORS[b.node.name] ?? TEXT
-    const modelY = y + (b.block - b.h) / 2
-    out += band(`m${i}`, TEXT, color, node, srcY, x1, modelY, b.h, b.h)
-    out += `<rect x="${x1}" y="${modelY}" width="${node}" height="${b.h}" rx="2" fill="${color}"/>`
+    const modelY = y + (b.block - b.size) / 2
+    out += band(`m${i}`, TEXT, color, node, srcY, x1, modelY, b.size, b.size)
+    out += `<rect x="${x1}" y="${modelY}" width="${node}" height="${b.size}" rx="2" fill="${color}"/>`
     out += label(x1 + node + 8, modelY + 12, b.node.name, b.node.count)
-    let childY = y + (b.block - spread(b.children.map(c => c.h))) / 2
+    let childY = y + (b.block - spread(b.children.map(c => c.size))) / 2
     b.children.forEach((c, k) => {
-      out += band(`e${i}-${k}`, color, color, x1 + node, modelY + (b.h * k) / Math.max(1, b.children.length), x2, childY, b.h / Math.max(1, b.children.length), c.h)
-      out += `<rect x="${x2}" y="${childY}" width="${node}" height="${c.h}" rx="2" fill="${color}"/>`
-      out += label(x2 + node + 8, childY + c.h / 2 + 4, c.name, c.count)
-      childY += c.h + CHILD_GAP
+      out += band(`e${i}-${k}`, color, color, x1 + node, modelY + (b.size * k) / Math.max(1, b.children.length), x2, childY, b.size / Math.max(1, b.children.length), c.size)
+      out += `<rect x="${x2}" y="${childY}" width="${node}" height="${c.size}" rx="2" fill="${color}"/>`
+      out += label(x2 + node + 8, childY + c.size / 2 + 4, c.name, c.count)
+      childY += c.size + CHILD_GAP
     })
-    srcY += b.h
+    srcY += b.size
     y += b.block + GAP_Y
   })
   return `${svgOpen(width, H)}<defs>${defs.join('')}</defs>${out}</svg>`

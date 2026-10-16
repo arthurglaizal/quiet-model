@@ -7,7 +7,7 @@
     {
       "name": "quiet-model",
       "source": "./",
-      "description": "The model and effort picker as one quiet grey row above the prompt: switch between Haiku, Sonnet, Opus and Fable and set the effort without leaving the conversation, or let an optional Magic Router pick them for each message. /quiet-model shows or hides it."
+      "description": "Pick the model and effort in one quiet grey row above the Claude Code prompt. Or let Magic Router choose for each message, and tune how it decides. /quiet-model shows or hides it."
     }
   ],
   "metadata": {
