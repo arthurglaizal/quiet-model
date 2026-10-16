@@ -171,7 +171,7 @@ Run the checks with `claude plugin validate .` and `claude plugin test .`.
 ## Quiet mods
 
 <p align="center">
-  <img src="https://github.com/arthurglaizal/quiet-model/releases/download/v1.0.0/quiet-mods.png" alt="Quiet Token Bar and Quiet Model stacked above the Claude Code prompt" width="100%">
+  <img src="https://github.com/arthurglaizal/quiet-model/releases/download/v2.0.0/quiet-mods.png" alt="Quiet Token Bar and Quiet Model stacked above the Claude Code prompt" width="100%">
 </p>
 
 The Quiet mods share one design: grey by default, color only when something needs you. They stack neatly above the prompt.
