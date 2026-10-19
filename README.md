@@ -121,6 +121,7 @@ The Quiet mods share one design: grey by default, color only when something need
 | --- | --- |
 | [Quiet Token Bar](https://github.com/arthurglaizal/quiet-token-bar) | Your context window in one quiet line: a patterned bar, a compact button and your session and weekly limits, grey until something gets warm. |
 | [Quiet Cost](https://github.com/arthurglaizal/quiet-cost) | What each reply cost, in one quiet grey line under it: an estimated price, the time and the tokens, and more figures you pick. |
+| [Quiet Server](https://github.com/arthurglaizal/quiet-server) | Launch your servers without leaving the conversation and catch the ones still running elsewhere: a count in the status line, the details in a pane. |
 
 ## Support
 
