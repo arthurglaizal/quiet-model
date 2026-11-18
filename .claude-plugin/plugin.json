@@ -1,12 +1,11 @@
 {
   "name": "quiet-model",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Pick the model and effort in one quiet grey row above the Claude Code prompt. Or let Magic Router choose for each message, and tune how it decides. /quiet-model shows or hides it.",
   "author": {
     "name": "Arthur Glaizal",
     "url": "https://github.com/arthurglaizal"
   },
-  "types": "./types/index.d.ts",
   "homepage": "https://github.com/arthurglaizal/quiet-model",
   "repository": "https://github.com/arthurglaizal/quiet-model",
   "license": "MIT",

@@ -87,6 +87,7 @@ A mod cannot move the app's own model menu, so **the last selector you touched w
 ## What it runs and keeps
 
 - **No network requests of its own.** Only Magic Router, once on, sends your draft and last messages to the analyst model through your own Claude session. It counts in your plan's usage like any request.
+- **No credentials.** It reads no token, API key, environment variable or file of yours: Magic Router goes through Claude Code's own session, never through a key of its own.
 - **No commands, no settings changed.** It only sets the model and effort of the main conversation's requests.
 - **Hooks**: `command.run` (only `/quiet-model`), `turn.step` (sets the model and effort, never for subagents), `prompt.edit` and `prompt.submit` (only with Magic Router on, they never change your message), `ui.render` and `ui.close` (draw the row and the pane), `session.start` (registers `/quiet-model`).
 - **Kept on your machine**: your choices, Magic Router's settings and its Totals (counts and costs, never a word of a message).
